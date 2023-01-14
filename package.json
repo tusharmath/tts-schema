@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "ts-macros": "^2.0.0",
+    "ttypescript": "^1.5.13",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "ttsc -b"
+  },
+  "license": "MIT"
+}
