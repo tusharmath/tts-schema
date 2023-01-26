@@ -16,7 +16,7 @@
     "semantic-release": "semantic-release"
   },
   "license": "MIT",
-  "name": "ts-schema",
+  "name": "tts-schema",
   "version": "0.0.0-development",
   "repository": {
     "type": "git",

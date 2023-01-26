@@ -15,7 +15,7 @@ Since typescript types are lost as soon as the code is compiled to JS, the only 
 ## Installation
 
 ```
-npm install ts-schema
+npm install tts-schema
 ```
 
 ## Usage
