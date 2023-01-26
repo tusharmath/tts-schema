@@ -1,6 +1,6 @@
 # TTS-Schema
 
-[![Actions Status](https://github.com/tusharmath/ts-schema/workflows/ci/badge.svg)](https://github.com/tusharmath/ts-schema/actions)
+[![Actions Status](https://github.com/tusharmath/ts-schema/actions/workflows/ci.yml/badge.svg)](https://github.com/tusharmath/ts-schema/actions)
 
 Since typescript types are lost as soon as the code is compiled to JS, the only option to check the type of an object at runtime is to use reflection. TS Schema attempts to solve that problem by creating a runtime representation of compile-time types.
 
