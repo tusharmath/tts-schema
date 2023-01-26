@@ -1,4 +1,4 @@
-# TS-Schema
+# TTS-Schema
 
 [![Actions Status](https://github.com/tusharmath/ts-schema/workflows/ci/badge.svg)](https://github.com/tusharmath/ts-schema/actions)
 
