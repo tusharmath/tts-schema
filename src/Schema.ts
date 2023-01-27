@@ -1,7 +1,7 @@
 import { MetaSchema } from "./MetaSchema"
 import { $$raw } from "ts-macros"
 import * as ts from "typescript"
-import { defaultValueGenerator } from "./Default"
+import { defaultValueGenerator } from "./DefaultValueGenerator"
 
 type SchemaDerivationContext = {
   $derive<A>(): Schema<A>
