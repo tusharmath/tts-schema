@@ -2,6 +2,8 @@ import { MetaSchema } from "./MetaSchema"
 import { $$raw } from "ts-macros"
 import * as ts from "typescript"
 import { defaultValueGenerator } from "./DefaultValueGenerator"
+import { Json, jsonDecode } from "./Json"
+import { Either } from "./Either"
 
 type SchemaDerivationContext = {
   $derive<A>(): Schema<A>
@@ -17,6 +19,10 @@ export class Schema<in out A> {
 
   or<B>(other: Schema<B>): Schema<A | B> {
     return Schema.union(this, other)
+  }
+
+  fromJson(json: Json): Either<string, A> {
+    return jsonDecode(json, this)
   }
 
   get defaultValue(): A {
