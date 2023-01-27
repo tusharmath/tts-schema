@@ -148,7 +148,7 @@ function $derive<A>(ctx: SchemaDerivationContext): Schema<A> {
               ctx.factory.createPropertyAssignment("types", ctx.factory.createArrayLiteralExpression(types)),
             ])
           } else {
-            console.error(new Error(`Unknown type: [${path.join(", ")}, ${checker.typeToString(type)}]`))
+            console.error(new Error(`Schema could not be generated for type: "${checker.typeToString(type)}"`))
             process.exit(1)
           }
         }
