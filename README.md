@@ -15,14 +15,12 @@ Since typescript types are lost as soon as the code is compiled to JS, the only 
 ## Installation
 
 ```
-npm install tts-schema
+npm install ttypescript tts-schema --save=dev
 ```
 
 ## Usage
 
-PS: The following code uses [ttypescript] to compile.
-
-[ttypescript]: https://github.com/cevek/ttypescript
+Consider the following Typescript Code:
 
 ```ts
 import { Schema } from "ts-schema"
@@ -34,33 +32,21 @@ type User = {
 }
 
 const userSchema = Schema.macro.$derive!<User>()
-
-const user: User = {
-  name: "John Doe",
-  age: 30,
-  email: "johndoe@example.com",
-}
-
-const encoded = userSchema.encode(user)
-// encoded as Json { "name": "John Doe", "age": 30, "email": "johndoe@example.com" }
-
-const decoded = userSchema.decode(encoded)
-// decoded from Json { name: "John Doe", age: 30, email: "johndoe@example.com" }
 ```
 
-## Manual Schema Creation
+The above TS file when compiled to JS would look something like this —
 
-Schemas can be created by hand as follows:
+```js
+import { Schema } from "ts-schema"
 
-```ts
-const userSchema = Schema.object({
-  name: Schema.string,
-  age: Schema.number,
-  email: Schema.string,
-})
+const userSchema = Schema.object({ name: Schema.string, age: Schema.number, email: Schema.string })
 ```
 
-## JSON Validation
+What is happening behind the scenes is that the type information which was available in the Typescript realm is now available at runtime in the JS realm. This allows us to write powerful checks such as the built-in [JSON Validator].
+
+[JSON Validator]: (#json-validator)
+
+## JSON Validator
 
 ```ts
 type User = {
