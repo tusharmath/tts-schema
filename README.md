@@ -20,6 +20,10 @@ npm install tts-schema
 
 ## Usage
 
+PS: The following code uses [ttypescript] to compile.
+
+[ttypescript]: https://github.com/cevek/ttypescript
+
 ```ts
 import { Schema } from "ts-schema"
 
