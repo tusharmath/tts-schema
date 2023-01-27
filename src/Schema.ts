@@ -1,6 +1,7 @@
 import { MetaSchema } from "./MetaSchema"
 import { $$raw } from "ts-macros"
 import * as ts from "typescript"
+import { defaultValueGenerator } from "./Default"
 
 type SchemaDerivationContext = {
   $derive<A>(): Schema<A>
@@ -16,6 +17,10 @@ export class Schema<in out A> {
 
   or<B>(other: Schema<B>): Schema<A | B> {
     return Schema.union(this, other)
+  }
+
+  get defaultValue(): A {
+    return defaultValueGenerator(this)
   }
 
   static get string(): Schema<string> {
