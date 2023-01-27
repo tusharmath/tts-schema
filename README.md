@@ -56,6 +56,24 @@ const userSchema = Schema.object({
 })
 ```
 
+## JSON Validation
+
+```ts
+type User = {
+  name: string
+  id: number
+  email: string | null
+}
+
+const schema = Schema.macro.$derive!<User>()
+
+const validUser = JSON.stringify({ name: "Ramen", id: 100, email: "ramen@porkchop.com" })
+schema.fromJson(validUser) // {right: {name: "Ramen", id: 100, email: "ramen@porkchop.com"}}
+
+const inValidUser = JSON.stringify({ firstName: "Ramen", age: 100, email: "ramen@porkchop.com" })
+schema.fromJson(inValidUser) // {left: "Invalid JSON"}
+```
+
 ## Features
 
 - Type-safe validation and encoding of data

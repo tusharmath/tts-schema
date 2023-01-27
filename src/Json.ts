@@ -1,4 +1,4 @@
-import { Either, isLeft, left, right } from "./Either"
+import { Either, isLeft, left, Right, right } from "./Either"
 import { MetaSchema } from "./MetaSchema"
 import { Schema } from "./Schema"
 
@@ -13,15 +13,16 @@ export const jsonDecode = <A>(a: Json, schema: Schema<A>): Either<string, A> => 
   if (MetaSchema.isArray(meta) && Array.isArray(a)) {
     const elementSchema = new Schema(meta.element)
     const result = (a as Json[]).map((item) => jsonDecode(item, elementSchema))
+
     if (result.filter(isLeft).length > 0) return left(`Invalid array element`)
-    return right(result.map((item) => item.value) as A)
+    return right((result as Right<unknown>[]).map((item) => item.right) as A)
   }
   if (MetaSchema.isObject(meta) && typeof a === "object" && a !== null) {
     const result: { [key: string]: unknown } = {}
     for (const [key, schema] of meta.fields) {
       const property = jsonDecode((a as { [key: string]: Json })[key], new Schema(schema))
       if (isLeft(property)) return left(`Invalid property: ${key}`)
-      result[key] = property.value
+      result[key] = property.right
     }
     return right(result as A)
   }
