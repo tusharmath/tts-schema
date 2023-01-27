@@ -148,8 +148,7 @@ function $derive<A>(ctx: SchemaDerivationContext): Schema<A> {
               ctx.factory.createPropertyAssignment("types", ctx.factory.createArrayLiteralExpression(types)),
             ])
           } else {
-            console.error(new Error(`Schema could not be generated for type: "${checker.typeToString(type)}"`))
-            process.exit(1)
+            throw new Error(`Schema could not be generated for type: "${checker.typeToString(type)}"`)
           }
         }
       )
